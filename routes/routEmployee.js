@@ -103,12 +103,16 @@ router.get('/m',async(req,res)=>
 
 router.get('/myData',async(req,res)=>
 {
-
-
-  let q=req.query.name;
-
-  res.json(q);
-
+  let id=req.query.id;
+  await emp.findById({_id:id},async(err,respo)=>
+  {
+    if (err) {
+      return res.json(err.toString());
+    }
+    else if (respo !== null) {
+      return res.json(respo);
+    }
+  })
 });
 
 
