@@ -101,6 +101,16 @@ router.get('/m',async(req,res)=>
 
 });
 
+router.get('/myData',async(req,res)=>
+{
+
+
+  let q=req.query.name;
+
+  res.json(q);
+
+});
+
 
 
 module.exports = router;
