@@ -28,6 +28,8 @@ router.get('/:id', async function (req, res) {
       return res.json(err.toString());
     }
     else {
+      respo=JSON.parse(JSON.stringify(respo));
+     respo.empName= (respo.empName).replace(/(^\w|\s\w)/g, m => m.toUpperCase());
       return res.json(respo);
     }
   })
