@@ -137,12 +137,11 @@ let limit = parseInt(req.params.limit);
 let page = req.params.pageNo || 1; 
 let emps = await emp.find({}).skip((limit * page) - limit).limit(limit);
 let numOfProducts = await emp.count({});
-res.json({
-  
-   currentPage: page, 
-   totalPages: Math.ceil(numOfProducts / limit), 
-   totalRecords: numOfProducts,
-   employees: emps, 
+  return res.json({
+     currentPage: page, 
+     totalPages: Math.ceil(numOfProducts / limit), 
+     totalRecords: numOfProducts,
+     employees: emps, 
   });
 
       
