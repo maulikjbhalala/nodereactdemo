@@ -64,17 +64,24 @@ router.put('/:id', async function (req, res) {
 
 
 router.get('/', async function (req, res) {
-  await emp.find({}, async (err, respo) => {
-    if (err) {
-      return res.json(err.toString());
-    }
-    else if (respo !== null) {
-      return res.json(respo);
-    }
-    else {
-      return res.json();
-    }
-  })
+  let name=req.query.name;
+  let mQuery={};
+  if(name!==null && name!==undefined)
+  {
+    mQuery={'empName':{$regex:name,$options:'i'}};
+  }
+    await emp.find(mQuery, async (err, respo) => {
+      if (err) {
+        return res.json(err.toString());
+      }
+      else if (respo !== null) {
+        return res.json(respo);
+      }
+      else {
+        return res.json();
+      }
+    });
+ 
 });
 
 router.delete('/:id', async (req, res) => {
