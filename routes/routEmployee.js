@@ -101,18 +101,26 @@ router.get('/m',async(req,res)=>
 
 });
 
+
+let mongoose=require('mongoose');
+
 router.get('/myData',async(req,res)=>
 {
-  let id=req.query.id;
-  await emp.findById({_id:id},async(err,respo)=>
-  {
-    if (err) {
-      return res.json(err.toString());
-    }
-    else if (respo !== null) {
-      return res.json(respo);
-    }
-  })
+  let id=req.query.name;
+    await emp.findOne({empName:id},async(err,respo)=>
+    {
+      if (err) {
+        console.log('in error')
+        return res.json(err.toString());
+      }
+      else if (respo !== null) {
+        console.log('in response');
+        return res.json(respo);
+      }
+    })
+
+
+  
 });
 
 
