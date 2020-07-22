@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var emp = require('../models/employee');
+const { mquery } = require('mongoose');
 
 
 router.post('/', async function (req, res) {
@@ -129,32 +130,22 @@ router.get('/myData',async(req,res)=>
 
 
 
-router.get('/page',async(req,res)=>
+router.get('/page/:pageNo/:limit',async(req,res)=>
 {
 
-  let mQuery={};
-  let limit=req.query.limit;
-  let pageNo=req.query.pageNo;
-     mQuery.skip=limit * (pageNo - 1);
-     mQuery.limit = limit;
-    await emp.find(mQuery, async (err, respo) => {
-      if (err) {
-        return res.json(err.toString());
-      }
-      else if (respo !== null) {
-        await emp.countDocuments(mQuery,async(err,count)=>
-        {
-          if (err) {
-            return res.json(err.toString());
-          }
-          else
-          {
-            let totalRecords=Math.ceil(count/limit);
-          return res.json({data:respo,page:pageNo,totalPages:totalRecords});
-          }
-        });
-      }
-    });
+let limit = parseInt(req.params.limit); 
+let page = req.params.pageNo || 1; 
+let emps = await emp.find({}).skip((limit * page) - limit).limit(limit);
+let numOfProducts = await emp.count({});
+res.json({
+  
+   currentPage: page, 
+   totalPages: Math.ceil(numOfProducts / limit), 
+   totalRecords: numOfProducts,
+   employees: emps, 
+  });
+
+      
 })
 
 module.exports = router;
