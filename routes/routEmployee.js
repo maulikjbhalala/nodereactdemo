@@ -109,7 +109,6 @@ router.get('/m',async(req,res)=>
 });
 
 
-let mongoose=require('mongoose');
 
 router.get('/myData',async(req,res)=>
 {
@@ -125,11 +124,37 @@ router.get('/myData',async(req,res)=>
         return res.json(respo);
       }
     })
-
-
   
 });
 
 
+
+router.get('/page',async(req,res)=>
+{
+
+  let mQuery={};
+  let limit=req.query.limit;
+  let pageNo=req.query.pageNo;
+     mQuery.skip=limit * (pageNo - 1);
+     mQuery.limit = limit;
+    await emp.find(mQuery, async (err, respo) => {
+      if (err) {
+        return res.json(err.toString());
+      }
+      else if (respo !== null) {
+        await emp.countDocuments(mQuery,async(err,count)=>
+        {
+          if (err) {
+            return res.json(err.toString());
+          }
+          else
+          {
+            let totalRecords=Math.ceil(count/limit);
+          return res.json({data:respo,page:pageNo,totalPages:totalRecords});
+          }
+        });
+      }
+    });
+})
 
 module.exports = router;
