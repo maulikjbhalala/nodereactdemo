@@ -130,11 +130,13 @@ router.get('/myData',async(req,res)=>
 
 
 
-router.get('/page/:pageNo/:limit',async(req,res)=>
+router.get('/page/:limit/:pageNo',async(req,res)=>
 {
 
+// let limit = parseInt(req.params.limit); 
+// let page = parseInt(req.params.skip) ;
 let limit = parseInt(req.params.limit); 
-let page = req.params.pageNo || 1; 
+let page = parseInt(req.params.pageNo) || 1; 
 let emps = await emp.find({}).skip((limit * page) - limit).limit(limit);
 let numOfProducts = await emp.count({});
   return res.json({
@@ -143,7 +145,6 @@ let numOfProducts = await emp.count({});
      totalRecords: numOfProducts,
      employees: emps, 
   });
-
       
 })
 
