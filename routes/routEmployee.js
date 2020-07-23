@@ -154,6 +154,17 @@ if(emps!==null && emps!=='undefined' && emps!==undefined && emps.length!==0 )
      employees: emps, 
   });
       
-})
+});
+
+
+router.get('/dept',async(req,res)=>
+{
+
+  let deptArray=[];
+  deptArray=['Development', 'Designing', 'Marketing', 'Support'];
+
+  return res.json({depts:deptArray})
+
+});
 
 module.exports = router;

@@ -4,7 +4,7 @@ let empSchema = new mongoose.Schema({
     empName: { type: String },
     empId: { type: Number },
     empDesg: { type: String },
-    empDept: { type: String, enum: ['Development', 'Designing', 'Marketing', 'Suport'] },
+    empDept: { type: String, enum: ['Development', 'Designing', 'Marketing', 'Support'] },
     empEmail: { type: String, trim: true }
 });
 
