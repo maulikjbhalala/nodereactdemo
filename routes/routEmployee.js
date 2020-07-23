@@ -138,11 +138,19 @@ router.get('/page/:limit/:pageNo',async(req,res)=>
 let limit = parseInt(req.params.limit); 
 let page = parseInt(req.params.pageNo) || 1; 
 let emps = await emp.find({}).skip((limit * page) - limit).limit(limit);
-let numOfProducts = await emp.count({});
+let countDoc = await emp.count({});
+let hasNext=false;
+
+if(emps!==null && emps!=='undefined' && emps!==undefined && emps.length!==0 ) 
+{
+  hasNext=true;
+}
   return res.json({
-     currentPage: page, 
+     currentPage: page,
+     nextPage:page+1, 
+     hasNext:hasNext,
      totalPages: Math.ceil(numOfProducts / limit), 
-     totalRecords: numOfProducts,
+     totalRecords: countDoc,
      employees: emps, 
   });
       
