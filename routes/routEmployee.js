@@ -81,7 +81,6 @@ router.get('/', async function (req, res) {
       else {
         return res.json();
       }
-<<<<<<< Updated upstream
     });
  
 });
@@ -115,7 +114,6 @@ router.get('/m',async(req,res)=>
 router.get('/getById',async(req,res)=>
 {
   let id=req.query.name;
-<<<<<<< Updated upstream
     await emp.findOne({empName:id},async(err,respo)=>
     {
       if (err) {
