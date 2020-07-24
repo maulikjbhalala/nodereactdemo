@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/routEmployee');
 let bodyParser = require('body-parser');
+let demoRouter=require('./routes/demoRoute')
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'build')))
 
 app.use('/', indexRouter);
 app.use('/emp', usersRouter);
+app.use('/d',demoRouter)
 
 
 app.get('*', (req, res) => {

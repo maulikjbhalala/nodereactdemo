@@ -159,11 +159,9 @@ if(emps!==null && emps!=='undefined' && emps!==undefined && emps.length!==0 )
 
 router.get('/dept',async(req,res)=>
 {
-
   let deptArray=[];
   deptArray=['Development', 'Designing', 'Marketing', 'Support'];
-
-  return res.json({depts:deptArray})
+  return res.json({depts:deptArray});
 
 });
 
