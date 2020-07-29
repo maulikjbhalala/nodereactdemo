@@ -1,2 +1,0 @@
-(this["webpackJsonpnode-react-app"]=this["webpackJsonpnode-react-app"]||[]).push([[13],{101:function(e,n,a){"use strict";a.r(n);var t=a(0),l=a.n(t),u=l.a.lazy((function(){return a.e(14).then(a.bind(null,102))}));n.default=function(e){var n=e.q,a=e.dataChange,p=e.nullInput,r=e.emps;return l.a.createElement("div",null,l.a.createElement(t.Suspense,{fallback:l.a.createElement("div",null,"Employees are fetching..")},l.a.createElement(u,{emps:r,q:n,dataChange:a,nullInput:p})))}}}]);
-//# sourceMappingURL=13.829feaee.chunk.js.map

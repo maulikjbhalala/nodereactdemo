@@ -7,6 +7,6 @@ let empSchema = new mongoose.Schema({
     empDept: { type: String, enum: ['Development', 'Designing', 'Marketing', 'Support'] },
     empEmail: { type: String, trim: true }
 });
-
+    
 module.exports = mongoose.model('emp', empSchema)
 
