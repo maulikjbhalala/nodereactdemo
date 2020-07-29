@@ -43,6 +43,24 @@ router.put('/',async(req,res)=>
 });
 
 
+router.get('/byId',async(req,res)=>
+{
+    let id=req.query.id;
+
+    await empModel.findOne({_id:id},async(err,respo)=>
+    {
+        if (err) {
+            return res.json(err.toString());
+          }
+          else {
+            return res.json(respo);
+          }
+    });
+
+
+});
+
+
 
 
 module.exports=router;
